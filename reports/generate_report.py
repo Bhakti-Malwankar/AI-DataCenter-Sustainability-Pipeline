@@ -6,8 +6,18 @@ from sqlalchemy import create_engine
 # DATABASE CONNECTION
 # ==================================================
 
+from dotenv import load_dotenv
+import os
+
+
+load_dotenv()
+
 DATABASE_URL = (
-    "postgresql+psycopg2://postgres:Bhakti5@localhost:5432/ai_datacenter_pipeline"
+    f"postgresql+psycopg2://{os.getenv('DB_USER')}:"
+    f"{os.getenv('DB_PASSWORD')}@"
+    f"{os.getenv('DB_HOST')}:"
+    f"{os.getenv('DB_PORT')}/"
+    f"{os.getenv('DB_NAME')}"
 )
 
 engine = create_engine(DATABASE_URL)
